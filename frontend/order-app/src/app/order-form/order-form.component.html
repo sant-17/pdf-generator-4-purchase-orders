@@ -1,0 +1,41 @@
+<mat-card class="purchase-order-card">
+  <form #orderForm="ngForm" (ngSubmit)="onSubmit(orderForm)">
+    <mat-form-field appearance="fill">
+      <mat-label>Cédula/NIT</mat-label>
+      <input matInput type="text" id="cedula" [(ngModel)]="cedula" name="cedula" required (input)="validateNumber($event)" maxlength="10" #cedulaInput="ngModel">
+      <mat-error *ngIf="cedulaInput.invalid && (cedulaInput.dirty || cedulaInput.touched)">
+        Cédula/NIT es requerido y debe contener solo números.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Teléfono</mat-label>
+      <input matInput type="text" id="telefono" [(ngModel)]="telefono" name="telefono" required (input)="validateNumber($event)" maxlength="10" #telefonoInput="ngModel">
+      <mat-error *ngIf="telefonoInput.invalid && (telefonoInput.dirty || telefonoInput.touched)">
+        Teléfono es requerido y debe contener solo números.
+      </mat-error>
+    </mat-form-field>
+
+    <h3>Productos</h3>
+    <mat-list>
+      <mat-list-item *ngFor="let product of productos">
+        {{ product.nombre }} - {{ product.precioUnitario | currency }}
+        <button mat-button type="button" (click)="addProduct(product)">Añadir</button>
+      </mat-list-item>
+    </mat-list>
+
+    <h3>Productos seleccionados</h3>
+    <mat-list>
+      <mat-list-item *ngFor="let product of selectedProducts; let i = index">
+        {{ product.nombre }} - {{ product.precioUnitario | currency }} x 
+        <input matInput type="number" [(ngModel)]="product.cantidad" name="cantidad{{i}}" min="1" max="10000" (input)="validateQuantity(product)" required #cantidadInput="ngModel">
+        <button mat-button type="button" (click)="removeProduct(i)">Eliminar</button>
+        <mat-error *ngIf="cantidadInput.invalid && (cantidadInput.dirty || cantidadInput.touched)">
+          La cantidad debe ser un número natural entre 1 y 10000.
+        </mat-error>
+      </mat-list-item>
+    </mat-list>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="orderForm.invalid">Generar PDF</button>
+  </form>
+</mat-card>

@@ -1,0 +1,35 @@
+# Global ignores
+.DS_Store
+Thumbs.db
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+/order-app/.angular
+/order-app/.vscode
+
+# Angular specific
+order-app/dist/
+order-app/.angular/
+order-app/.vscode/
+order-app/.idea/
+order-app/.node_modules/
+
+# Java
+pdf-generator/target/
+pdf-generator/.idea/
+pdf-generator/.mvn/wrapper/maven-wrapper.jar
+
+# Maven specific
+*.log
+!.mvn/wrapper/maven-wrapper.jar
+**/mvn/wrapper/maven-wrapper.jar
+
+# IntelliJ IDEA
+*.iml
+.idea/
+
+# VS Code
+.vscode/

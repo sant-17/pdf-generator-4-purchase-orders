@@ -1,0 +1,33 @@
+.purchase-order-card {
+    max-width: 600px;
+    margin: 2em auto;
+    padding: 2em;
+  }
+  
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 1em;
+  }
+  
+  mat-list {
+    background: #fff;
+    margin-bottom: 1em;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  mat-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  button {
+    margin-left: 1em;
+  }
+
+  form {
+    background: rgba(226, 226, 226, 0.8);
+    padding: 2em;
+    border-radius: 8px;
+  }
