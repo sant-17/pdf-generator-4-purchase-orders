@@ -2703,11 +2703,6 @@ function observeNotification(notification, observer) {
   kind === "N" ? (_a = observer.next) === null || _a === void 0 ? void 0 : _a.call(observer, value) : kind === "E" ? (_b = observer.error) === null || _b === void 0 ? void 0 : _b.call(observer, error) : (_c = observer.complete) === null || _c === void 0 ? void 0 : _c.call(observer);
 }
 
-// node_modules/rxjs/dist/esm5/internal/util/isObservable.js
-function isObservable(obj) {
-  return !!obj && (obj instanceof Observable || isFunction(obj.lift) && isFunction(obj.subscribe));
-}
-
 // node_modules/rxjs/dist/esm5/internal/util/EmptyError.js
 var EmptyError = createErrorClass(function(_super) {
   return function EmptyErrorImpl() {
@@ -2977,13 +2972,6 @@ function concat() {
     args[_i] = arguments[_i];
   }
   return concatAll()(from(args, popScheduler(args)));
-}
-
-// node_modules/rxjs/dist/esm5/internal/observable/defer.js
-function defer(observableFactory) {
-  return new Observable(function(subscriber) {
-    innerFrom(observableFactory()).subscribe(subscriber);
-  });
 }
 
 // node_modules/rxjs/dist/esm5/internal/observable/forkJoin.js
@@ -3342,20 +3330,6 @@ function first(predicate, defaultValue) {
   };
 }
 
-// node_modules/rxjs/dist/esm5/internal/operators/pairwise.js
-function pairwise() {
-  return operate(function(source, subscriber) {
-    var prev;
-    var hasPrev = false;
-    source.subscribe(createOperatorSubscriber(subscriber, function(value) {
-      var p = prev;
-      prev = value;
-      hasPrev && subscriber.next([p, value]);
-      hasPrev = true;
-    }));
-  });
-}
-
 // node_modules/rxjs/dist/esm5/internal/operators/share.js
 function share(options) {
   if (options === void 0) {
@@ -3514,21 +3488,6 @@ function takeUntil(notifier) {
       return subscriber.complete();
     }, noop));
     !subscriber.closed && source.subscribe(subscriber);
-  });
-}
-
-// node_modules/rxjs/dist/esm5/internal/operators/takeWhile.js
-function takeWhile(predicate, inclusive) {
-  if (inclusive === void 0) {
-    inclusive = false;
-  }
-  return operate(function(source, subscriber) {
-    var index = 0;
-    source.subscribe(createOperatorSubscriber(subscriber, function(value) {
-      var result = predicate(value, index++);
-      (result || inclusive) && subscriber.next(value);
-      !result && subscriber.complete();
-    }));
   });
 }
 
@@ -24308,19 +24267,14 @@ if (typeof ngDevMode !== "undefined" && ngDevMode) {
 export {
   Subscription,
   Observable,
-  ConnectableObservable,
   Subject,
   BehaviorSubject,
-  asapScheduler,
-  animationFrameScheduler,
   EMPTY,
   from,
   of,
-  isObservable,
   map,
   combineLatest,
   concat,
-  defer,
   forkJoin,
   fromEvent,
   merge,
@@ -24331,13 +24285,11 @@ export {
   take,
   distinctUntilChanged,
   finalize,
-  pairwise,
   shareReplay,
   skip,
   startWith,
   switchMap,
   takeUntil,
-  takeWhile,
   tap,
   XSS_SECURITY_URL,
   RuntimeError,
@@ -24835,4 +24787,4 @@ export {
    * found in the LICENSE file at https://angular.io/license
    *)
 */
-//# sourceMappingURL=chunk-FOJ3RUU5.js.map
+//# sourceMappingURL=chunk-CRD5RLUA.js.map

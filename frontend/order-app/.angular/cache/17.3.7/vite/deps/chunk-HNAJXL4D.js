@@ -1,7 +1,7 @@
 import {
   DOCUMENT,
   isPlatformBrowser
-} from "./chunk-L6NLV626.js";
+} from "./chunk-QYBN7L6X.js";
 import {
   ANIMATION_MODULE_TYPE,
   APP_ID,
@@ -78,34 +78,11 @@ import {
   ɵɵtext,
   ɵɵtextInterpolate1,
   ɵɵviewQuery
-} from "./chunk-FOJ3RUU5.js";
+} from "./chunk-CRD5RLUA.js";
 import {
   __spreadProps,
   __spreadValues
 } from "./chunk-WKYGNSYM.js";
-
-// node_modules/@angular/cdk/fesm2022/coercion.mjs
-function coerceBooleanProperty(value) {
-  return value != null && `${value}` !== "false";
-}
-function coerceNumberProperty(value, fallbackValue = 0) {
-  return _isNumberValue(value) ? Number(value) : fallbackValue;
-}
-function _isNumberValue(value) {
-  return !isNaN(parseFloat(value)) && !isNaN(Number(value));
-}
-function coerceArray(value) {
-  return Array.isArray(value) ? value : [value];
-}
-function coerceCssPixelValue(value) {
-  if (value == null) {
-    return "";
-  }
-  return typeof value === "string" ? value : `${value}px`;
-}
-function coerceElement(elementOrRef) {
-  return elementOrRef instanceof ElementRef ? elementOrRef.nativeElement : elementOrRef;
-}
 
 // node_modules/@angular/cdk/fesm2022/platform.mjs
 var hasV8BreakIterator;
@@ -233,55 +210,6 @@ var RtlScrollAxisType;
   RtlScrollAxisType2[RtlScrollAxisType2["NEGATED"] = 1] = "NEGATED";
   RtlScrollAxisType2[RtlScrollAxisType2["INVERTED"] = 2] = "INVERTED";
 })(RtlScrollAxisType || (RtlScrollAxisType = {}));
-var rtlScrollAxisType;
-var scrollBehaviorSupported;
-function supportsScrollBehavior() {
-  if (scrollBehaviorSupported == null) {
-    if (typeof document !== "object" || !document || typeof Element !== "function" || !Element) {
-      scrollBehaviorSupported = false;
-      return scrollBehaviorSupported;
-    }
-    if ("scrollBehavior" in document.documentElement.style) {
-      scrollBehaviorSupported = true;
-    } else {
-      const scrollToFunction = Element.prototype.scrollTo;
-      if (scrollToFunction) {
-        scrollBehaviorSupported = !/\{\s*\[native code\]\s*\}/.test(scrollToFunction.toString());
-      } else {
-        scrollBehaviorSupported = false;
-      }
-    }
-  }
-  return scrollBehaviorSupported;
-}
-function getRtlScrollAxisType() {
-  if (typeof document !== "object" || !document) {
-    return RtlScrollAxisType.NORMAL;
-  }
-  if (rtlScrollAxisType == null) {
-    const scrollContainer = document.createElement("div");
-    const containerStyle = scrollContainer.style;
-    scrollContainer.dir = "rtl";
-    containerStyle.width = "1px";
-    containerStyle.overflow = "auto";
-    containerStyle.visibility = "hidden";
-    containerStyle.pointerEvents = "none";
-    containerStyle.position = "absolute";
-    const content = document.createElement("div");
-    const contentStyle = content.style;
-    contentStyle.width = "2px";
-    contentStyle.height = "1px";
-    scrollContainer.appendChild(content);
-    document.body.appendChild(scrollContainer);
-    rtlScrollAxisType = RtlScrollAxisType.NORMAL;
-    if (scrollContainer.scrollLeft === 0) {
-      scrollContainer.scrollLeft = 1;
-      rtlScrollAxisType = scrollContainer.scrollLeft === 0 ? RtlScrollAxisType.NEGATED : RtlScrollAxisType.INVERTED;
-    }
-    scrollContainer.remove();
-  }
-  return rtlScrollAxisType;
-}
 var shadowDomIsSupported;
 function _supportsShadowDom() {
   if (shadowDomIsSupported == null) {
@@ -330,7 +258,6 @@ var ENTER = 13;
 var SHIFT = 16;
 var CONTROL = 17;
 var ALT = 18;
-var ESCAPE = 27;
 var SPACE = 32;
 var PAGE_UP = 33;
 var PAGE_DOWN = 34;
@@ -351,6 +278,23 @@ function hasModifierKey(event, ...modifiers) {
     return modifiers.some((modifier) => event[modifier]);
   }
   return event.altKey || event.shiftKey || event.ctrlKey || event.metaKey;
+}
+
+// node_modules/@angular/cdk/fesm2022/coercion.mjs
+function coerceBooleanProperty(value) {
+  return value != null && `${value}` !== "false";
+}
+function coerceNumberProperty(value, fallbackValue = 0) {
+  return _isNumberValue(value) ? Number(value) : fallbackValue;
+}
+function _isNumberValue(value) {
+  return !isNaN(parseFloat(value)) && !isNaN(Number(value));
+}
+function coerceArray(value) {
+  return Array.isArray(value) ? value : [value];
+}
+function coerceElement(elementOrRef) {
+  return elementOrRef instanceof ElementRef ? elementOrRef.nativeElement : elementOrRef;
 }
 
 // node_modules/@angular/cdk/fesm2022/observers.mjs
@@ -1342,17 +1286,6 @@ var ListKeyManager = class {
       if (newIndex > -1 && newIndex !== this._activeItemIndex) {
         this._activeItemIndex = newIndex;
       }
-    }
-  }
-};
-var ActiveDescendantKeyManager = class extends ListKeyManager {
-  setActiveItem(index) {
-    if (this.activeItem) {
-      this.activeItem.setInactiveStyles();
-    }
-    super.setActiveItem(index);
-    if (this.activeItem) {
-      this.activeItem.setActiveStyles();
     }
   }
 };
@@ -4766,29 +4699,6 @@ var MatOption = _MatOption;
     }]
   });
 })();
-function _countGroupLabelsBeforeOption(optionIndex, options, optionGroups) {
-  if (optionGroups.length) {
-    let optionsArray = options.toArray();
-    let groups = optionGroups.toArray();
-    let groupCounter = 0;
-    for (let i = 0; i < optionIndex + 1; i++) {
-      if (optionsArray[i].group && optionsArray[i].group === groups[groupCounter]) {
-        groupCounter++;
-      }
-    }
-    return groupCounter;
-  }
-  return 0;
-}
-function _getOptionScrollPosition(optionOffset, optionHeight, currentScrollPosition, panelHeight) {
-  if (optionOffset < currentScrollPosition) {
-    return optionOffset;
-  }
-  if (optionOffset + optionHeight > currentScrollPosition + panelHeight) {
-    return Math.max(0, optionOffset - panelHeight + optionHeight);
-  }
-  return currentScrollPosition;
-}
 var _MatOptionModule = class _MatOptionModule {
 };
 _MatOptionModule.ɵfac = function MatOptionModule_Factory(t) {
@@ -5006,39 +4916,22 @@ var _MatInternalFormField = __MatInternalFormField;
 })();
 
 export {
-  coerceBooleanProperty,
-  coerceNumberProperty,
-  coerceArray,
-  coerceCssPixelValue,
-  coerceElement,
   Platform,
   getSupportedInputTypes,
   normalizePassiveListenerOptions,
-  RtlScrollAxisType,
-  supportsScrollBehavior,
-  getRtlScrollAxisType,
   _getFocusedElementPierceShadowDom,
-  _getEventTarget,
-  _isTestEnvironment,
   ENTER,
-  ESCAPE,
   SPACE,
-  LEFT_ARROW,
-  UP_ARROW,
-  RIGHT_ARROW,
-  DOWN_ARROW,
   A,
   hasModifierKey,
+  coerceBooleanProperty,
+  coerceNumberProperty,
+  coerceElement,
   CdkObserveContent,
   ObserversModule,
-  addAriaReferencedId,
-  removeAriaReferencedId,
-  ActiveDescendantKeyManager,
   FocusKeyManager,
-  LiveAnnouncer,
   FocusMonitor,
   Directionality,
-  BidiModule,
   MatCommonModule,
   _ErrorStateTracker,
   ErrorStateMatcher,
@@ -5046,13 +4939,6 @@ export {
   MAT_RIPPLE_GLOBAL_OPTIONS,
   MatRippleModule,
   MatPseudoCheckboxModule,
-  MAT_OPTION_PARENT_COMPONENT,
-  MAT_OPTGROUP,
-  MatOptgroup,
-  MatOption,
-  _countGroupLabelsBeforeOption,
-  _getOptionScrollPosition,
-  MatOptionModule,
   MatRippleLoader
 };
-//# sourceMappingURL=chunk-5T4DILXD.js.map
+//# sourceMappingURL=chunk-HNAJXL4D.js.map
