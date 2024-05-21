@@ -9,37 +9,7 @@ Demostración:
 ## 🚀 Acerca de mí
 Buen día, 
 
-Soy Santiago García Herrera, estudiante de Ingeniería de Sistemas de octavo semestre y (autoproclamado) Desarrollador Backend con Java/SpringBoot. 
-
-
-## Historias de Usuario
-
-Creé unas historias de usuario (HU apartir de ahora en los commits del proyecto y en este Read.me) para resolver el reto sin embargo, no he agregado criterios de aceptación para no extender Read.me
-
-- **HU-1. Formulario de Orden de Compra**:
-    Como cliente de MECATICO COMPANY,
-    Quiero ingresar mi número de cédula o NIT, mi número de teléfono y seleccionar al menos tres productos para ordenar,
-    Para poder generar y descargar mi orden de compra en formato PDF.
-
-- **HU-2. Generación y Descarga de PDF**: 
-    Como cliente de MECATICO COMPANY,
-    Quiero que los datos ingresados en el formulario sean recopilados y transformados en un archivo PDF,
-    Para poder tener una copia de mi orden de compra.
-
-- **HU-3. Validaciones del Formulario**:
-    Como cliente de MECATICO COMPANY,
-    Quiero recibir retroalimentación inmediata si ingreso datos incorrectos en el formulario,
-    Para asegurarme de que todos los datos sean válidos antes de generar el PDF.
-
-- **HU-4. Mejora de la Interfaz de Usuario**:
-    Como cliente de MECATICO COMPANY,
-    Quiero que la interfaz del formulario sea fácil de usar y visualmente atractiva,
-    Para mejorar mi experiencia al ingresar una orden de compra.
-
-- **HU-5. Integración del Backend**:
-    Como desarrollador del sistema de órdenes de compra,
-    Quiero integrar un backend en Java que reciba los datos del formulario,
-    Para generar el PDF en el servidor y enviar el archivo al frontend para su descarga.
+Soy Santiago García Herrera, estudiante de Ingeniería de Sistemas de octavo semestre y (autoproclamado) Desarrollador Backend con Java/Spring Boot. 
 
 ## Estructura del Proyecto
 
@@ -57,8 +27,8 @@ El proyecto está dividido en dos partes principales:
 
 ## Tecnologías Utilizadas
 
-- **Frontend**: Angular, Angular Material
-- **Backend**: Spring Boot, iText para la generación de PDFs
+- **Frontend**: Angular (versión 17.3.7), Angular Material
+- **Backend**: Spring Boot (versión 3.2.5 y Java 17), iText para la generación de PDFs
 - **Otros**: Maven, Node.js
 
 ## Configuración y Ejecución
@@ -108,3 +78,34 @@ El proyecto está dividido en dos partes principales:
 2. Completa el formulario con los datos necesarios.
 3. Selecciona los productos y sus cantidades.
 4. Haz clic en "Generar PDF" para descargar la orden de compra en formato PDF.
+
+## Historias de Usuario
+
+Creé unas historias de usuario (HU apartir de ahora en los commits del proyecto y en este Read.me) para resolver el reto sin embargo, no he agregado criterios de aceptación para no extender Read.me
+
+- **HU-1. Formulario de Orden de Compra**:
+    Como cliente de MECATICO COMPANY,
+    Quiero ingresar mi número de cédula o NIT, mi número de teléfono y seleccionar al menos tres productos para ordenar,
+    Para poder generar y descargar mi orden de compra en formato PDF.
+
+- **HU-2. Generación y Descarga de PDF**: 
+    Como cliente de MECATICO COMPANY,
+    Quiero que los datos ingresados en el formulario sean recopilados y transformados en un archivo PDF,
+    Para poder tener una copia de mi orden de compra.
+
+- **HU-3. Validaciones del Formulario**:
+    Como cliente de MECATICO COMPANY,
+    Quiero recibir retroalimentación inmediata si ingreso datos incorrectos en el formulario,
+    Para asegurarme de que todos los datos sean válidos antes de generar el PDF.
+
+- **HU-4. Mejora de la Interfaz de Usuario**:
+    Como cliente de MECATICO COMPANY,
+    Quiero que la interfaz del formulario sea fácil de usar y visualmente atractiva,
+    Para mejorar mi experiencia al ingresar una orden de compra.
+
+- **HU-5. Integración del Backend**:
+    Como desarrollador del sistema de órdenes de compra,
+    Quiero integrar un backend en Java que reciba los datos del formulario,
+    Para generar el PDF en el servidor y enviar el archivo al frontend para su descarga.
+
+
