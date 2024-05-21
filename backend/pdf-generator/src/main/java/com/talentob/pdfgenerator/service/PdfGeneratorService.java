@@ -1,12 +1,11 @@
 package com.talentob.pdfgenerator.service;
 
-import com.itextpdf.kernel.font.PdfFont;
-import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
 import com.talentob.pdfgenerator.dto.Product;
 import com.talentob.pdfgenerator.dto.PurchaseOrderDTO;
@@ -14,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.util.List;
+import java.text.DecimalFormat;
 
 @Service
 public class PdfGeneratorService {
@@ -26,35 +25,50 @@ public class PdfGeneratorService {
             PdfDocument pdf = new PdfDocument(writer);
             Document document = new Document(pdf);
 
-            document.add(new Paragraph("MECATICO COMPANY"));
-            document.add(new Paragraph("Orden de compra:"));
-            document.add(new Paragraph(" "));
+            DecimalFormat currencyFormat = new DecimalFormat("$###,###.00");
 
-            document.add(new Paragraph("Cédula/NIT: " + order.getCedula()));
-            document.add(new Paragraph("Número de Teléfono: " + order.getTelefono()));
-            document.add(new Paragraph(" "));
+            Paragraph header = new Paragraph("MECATICO COMPANY")
+                    .setFontSize(20)
+                    .setBold()
+                    .setTextAlignment(TextAlignment.CENTER);
+            document.add(header);
+
+            Paragraph subHeader = new Paragraph("Orden de compra:")
+                    .setFontSize(14)
+                    .setBold()
+                    .setTextAlignment(TextAlignment.CENTER)
+                    .setMarginBottom(10);
+            document.add(subHeader);
+
+            document.add(new Paragraph("Cédula/NIT: " + order.getCedula()).setMarginBottom(5));
+            document.add(new Paragraph("Número de Teléfono: " + order.getTelefono()).setMarginBottom(15));
 
             Table table = new Table(UnitValue.createPercentArray(new float[]{4, 1, 1, 1}));
             table.setWidth(UnitValue.createPercentValue(100));
+            table.setMarginBottom(20);
 
-            table.addHeaderCell(new Paragraph("Nombre").setBold());
-            table.addHeaderCell(new Paragraph("Precio Unitario").setBold());
-            table.addHeaderCell(new Paragraph("Cantidad").setBold());
-            table.addHeaderCell(new Paragraph("Total").setBold());
+            table.addHeaderCell(new Paragraph("Nombre").setBold().setTextAlignment(TextAlignment.CENTER));
+            table.addHeaderCell(new Paragraph("Precio Unitario").setBold().setTextAlignment(TextAlignment.CENTER));
+            table.addHeaderCell(new Paragraph("Cantidad").setBold().setTextAlignment(TextAlignment.CENTER));
+            table.addHeaderCell(new Paragraph("Total").setBold().setTextAlignment(TextAlignment.CENTER));
 
             double total = 0;
 
             for (Product producto : order.getProductos()) {
-                table.addCell(new Paragraph(producto.getNombre()));
-                table.addCell(new Paragraph("$" + producto.getPrecioUnitario()));
-                table.addCell(new Paragraph(String.valueOf(producto.getCantidad())));
-                total = total + (producto.getPrecioUnitario() * producto.getCantidad());
-                table.addCell(new Paragraph("$" + producto.getPrecioUnitario() * producto.getCantidad()));
+                table.addCell(new Paragraph(producto.getNombre()).setTextAlignment(TextAlignment.CENTER));
+                table.addCell(new Paragraph(currencyFormat.format(producto.getPrecioUnitario())).setTextAlignment(TextAlignment.CENTER));
+                table.addCell(new Paragraph(String.valueOf(producto.getCantidad())).setTextAlignment(TextAlignment.CENTER));
+                double totalProducto = producto.getPrecioUnitario() * producto.getCantidad();
+                total += totalProducto;
+                table.addCell(new Paragraph(currencyFormat.format(totalProducto)).setTextAlignment(TextAlignment.CENTER));
             }
 
             document.add(table);
 
-            document.add(new Paragraph("Total de la orden: $" + total));
+            Paragraph totalParagraph = new Paragraph("Total de la orden: " + currencyFormat.format(total))
+                    .setBold()
+                    .setTextAlignment(TextAlignment.RIGHT);
+            document.add(totalParagraph);
 
             document.close();
         } catch (Exception e) {
