@@ -4,7 +4,7 @@ Creé este repositorio para la solución al reto de Talento B. Consta de un fron
 
 Demostración:
 
-https://github.com/sant-17/pdf-generator-4-purchase-orders/assets/104281267/d322296f-1ccc-40c8-b97c-4037c88f4488
+[https://github.com/sant-17/pdf-generator-4-purchase-orders/assets/104281267/d322296f-1ccc-40c8-b97c-4037c88f4488](https://github.com/sant-17/pdf-generator-4-purchase-orders/assets/104281267/3b7c1f83-9fbb-4cfc-86a0-75c63ceaa862)
 
 ## 🚀 Acerca de mí
 Buen día, 
